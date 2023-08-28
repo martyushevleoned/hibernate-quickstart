@@ -3,6 +3,7 @@ package org.example;
 import org.example.tables.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -16,44 +17,47 @@ public class Main {
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
         Session session = sessionFactory.openSession();
 
-        System.out.println();
-        Country country = session.get(Country.class, "RUS");
-        System.out.println(country.getName());
-        System.out.println();
+//        Add country
+//        Transaction transaction = session.beginTransaction();
+//        Country country = new Country();
+//        country.setCode("AAA");
+//        country.setName("Zabugor'e");
+//        country.setContinent(Continent.ASIA);
+//        country.setRegion("South Asia");
+//        country.setSurfaceArea(987654.00);
+//        country.setIndepYear(2023);
+//        country.setPopulation(1);
+//        country.setLifeExpectancy(99.9);
+//        country.setGnp(987.65);
+//        country.setGnpOld(987.65);
+//        country.setLocalName("Bugor");
+//        country.setGovernmentForm("Federation");
+//        country.setHeadOfState("Me");
+//        country.setCapital(999);
+//        country.setCode2("AA");
+//        session.save(country);
+//        transaction.commit();
 
-        City city = session.get(City.class, 1);
-        System.out.println(city.getName());
-        System.out.println(city.getCountry().getName());
-        System.out.println();
-
-//=================================================================================================
-
-//        SELECT
-//        City city = session.get(City.class, 4079);
-//        System.out.println(city);
-
-//        INSERT
+//        Add city
 //        Transaction transaction = session.beginTransaction();
 //        City city = new City();
 //        city.setId(4080);
-//        city.setName("MySity");
-//        city.setCountryCode("PSE");
-//        city.setDistrict("MySity");
-//        city.setPopulation(9001);
+//        city.setName("Urodsk");
+//        city.setCountry(session.get(Country.class, "AAA"));
+//        city.setDistrict("Zavodland");
+//        city.setPopulation(1);
 //        session.save(city);
 //        transaction.commit();
 
-//        UPDATE
-//        Transaction transaction = session.beginTransaction();
+//        Select
 //        City city = session.get(City.class, 4080);
-//        city.setCountryCode("RUS");
-//        session.save(city);
-//        transaction.commit();
+//        System.out.println(city);
+//        Country country = session.get(Country.class, "AAA");
+//        System.out.println(country);
 
-//        DELETE
+//        Delete city (with country)
 //        Transaction transaction = session.beginTransaction();
-//        City city = session.get(City.class, 4080);
-//        session.delete(city);
+//        session.delete(session.get(City.class, 4080));
 //        transaction.commit();
 
         sessionFactory.close();

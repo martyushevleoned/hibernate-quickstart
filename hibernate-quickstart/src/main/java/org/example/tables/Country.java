@@ -15,8 +15,9 @@ public class Country {
     @Column(name = "Name", columnDefinition = "char")
     private String name;
 
+    @Convert(converter = ContinentConverter.class)
     @Column(name = "Continent", columnDefinition = "enum")
-    private String continent;
+    private Continent continent;
 
     @Column(name = "Region", columnDefinition = "char")
     private String region;
