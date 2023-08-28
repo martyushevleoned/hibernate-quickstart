@@ -17,8 +17,9 @@ public class Main {
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
         Session session = sessionFactory.openSession();
 
-//        Add country
+//        Add city
 //        Transaction transaction = session.beginTransaction();
+//
 //        Country country = new Country();
 //        country.setCode("AAA");
 //        country.setName("Zabugor'e");
@@ -35,25 +36,24 @@ public class Main {
 //        country.setHeadOfState("Me");
 //        country.setCapital(999);
 //        country.setCode2("AA");
-//        session.save(country);
-//        transaction.commit();
-
-//        Add city
-//        Transaction transaction = session.beginTransaction();
+//
 //        City city = new City();
 //        city.setId(4080);
 //        city.setName("Urodsk");
-//        city.setCountry(session.get(Country.class, "AAA"));
+//        city.setCountry(country);
 //        city.setDistrict("Zavodland");
 //        city.setPopulation(1);
+//
 //        session.save(city);
 //        transaction.commit();
+
 
 //        Select
 //        City city = session.get(City.class, 4080);
 //        System.out.println(city);
 //        Country country = session.get(Country.class, "AAA");
 //        System.out.println(country);
+
 
 //        Delete city (with country)
 //        Transaction transaction = session.beginTransaction();
