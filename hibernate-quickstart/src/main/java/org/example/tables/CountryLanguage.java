@@ -1,11 +1,17 @@
 package org.example.tables;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.tables.enums.IsOfficialConverter;
 
 import javax.persistence.*;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "countrylanguage")
 public class CountryLanguage {

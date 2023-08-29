@@ -30,6 +30,8 @@ public class Main {
             System.out.println("Country not found");
         }
 
+        City city = City.builder().id(12).name("Name").district("some district").population(1123).build();
+        System.out.println(city);
 
 //=======================================================================================
 //        Add city
