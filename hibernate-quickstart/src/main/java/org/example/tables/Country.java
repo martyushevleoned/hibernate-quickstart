@@ -1,7 +1,11 @@
 package org.example.tables;
 
 import lombok.Data;
+import org.example.tables.enums.Continent;
+import org.example.tables.enums.ContinentConverter;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -54,4 +58,12 @@ public class Country {
 
     @Column(name = "Code2", columnDefinition = "char")
     private String code2;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    @OrderBy("ID")
+    private List<City> cities;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    @OrderBy("Percentage")
+    private List<CountryLanguage> languages;
 }

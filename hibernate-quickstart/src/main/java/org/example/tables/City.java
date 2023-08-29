@@ -1,6 +1,7 @@
 package org.example.tables;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Data

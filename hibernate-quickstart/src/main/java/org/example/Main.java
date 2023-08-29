@@ -1,5 +1,6 @@
 package org.example;
 
+
 import org.example.tables.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,6 +9,8 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import java.util.List;
+import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +20,18 @@ public class Main {
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
         Session session = sessionFactory.openSession();
 
+
+        Optional<Country> country = Optional.ofNullable(session.get(Country.class, "RUS"));
+        if (country.isPresent()) {
+            System.out.println(country.get().getName());
+            List<CountryLanguage> languages = country.get().getLanguages();
+            languages.forEach(l -> System.out.println(l.getPercentage() + "\t" + l.getLanguage()));
+        } else {
+            System.out.println("Country not found");
+        }
+
+
+//=======================================================================================
 //        Add city
 //        Transaction transaction = session.beginTransaction();
 //
@@ -50,16 +65,18 @@ public class Main {
 
 //        Select
 //        City city = session.get(City.class, 4080);
-//        System.out.println(city);
+//        System.out.println(city.getName());
 //        Country country = session.get(Country.class, "AAA");
-//        System.out.println(country);
+//        System.out.println(country.getName());
 
 
 //        Delete city (with country)
 //        Transaction transaction = session.beginTransaction();
 //        session.delete(session.get(City.class, 4080));
+//        session.delete(session.get(Country.class, "AAA"));
 //        transaction.commit();
 
+        session.close();
         sessionFactory.close();
     }
 }

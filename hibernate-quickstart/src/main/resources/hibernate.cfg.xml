@@ -18,8 +18,9 @@
         <property name="current_session_context_class">thread</property>
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">validate</property>
-
+        <!-- Mapping tables -->
         <mapping class="org.example.tables.City"/>
         <mapping class="org.example.tables.Country"/>
+        <mapping class="org.example.tables.CountryLanguage"/>
     </session-factory>
 </hibernate-configuration>

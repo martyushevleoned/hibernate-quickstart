@@ -1,4 +1,4 @@
-package org.example.tables;
+package org.example.tables.enums;
 
 public enum Continent {
     ASIA,

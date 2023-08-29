@@ -1,4 +1,4 @@
-package org.example.tables;
+package org.example.tables.enums;
 
 import javax.persistence.AttributeConverter;
 
