@@ -8,19 +8,17 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class MySqlWorker {
-    private static MySqlWorker instance;
     private static SessionFactory sessionFactory;
 
-    private MySqlWorker() {
+    private static void init() {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
         sessionFactory = metadata.getSessionFactoryBuilder().build();
     }
 
     public static Session getSession() {
-        if (instance == null)
-            instance = new MySqlWorker();
+        if (sessionFactory == null)
+            init();
         return sessionFactory.openSession();
     }
-
 }
