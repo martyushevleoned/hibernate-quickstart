@@ -25,7 +25,10 @@ public class MySqlWorkerTest extends TestCase {
         Optional<CountryLanguage> language = Optional.ofNullable(session.get(CountryLanguage.class, pk));
 
         if (language.isPresent()) {
-            System.out.println(language.get().getIsOfficial());
+            if(language.get().getIsOfficial())
+                System.out.println(language.get().getLanguage() + " is official language of " + language.get().getCountry());
+            else
+                System.out.println(language.get().getLanguage() + " is not official language of " + language.get().getCountry());
         } else {
             System.out.println("Language not found");
         }
