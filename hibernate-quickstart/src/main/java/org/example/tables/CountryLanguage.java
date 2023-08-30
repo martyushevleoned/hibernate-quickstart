@@ -19,8 +19,9 @@ import javax.persistence.*;
 public class CountryLanguage {
 
     @Id
-    @Column(name = "CountryCode", columnDefinition = "char")
-    private String country;
+    @ManyToOne
+    @JoinColumn(name = "CountryCode")
+    private Country country;
 
     @Id
     @Column(name = "Language", columnDefinition = "char")

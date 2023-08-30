@@ -65,11 +65,11 @@ public class Country {
     @Column(name = "Code2", columnDefinition = "char")
     private String code2;
 
-    @OneToMany(mappedBy = "country")
-    @OrderBy("ID")
+    @OneToMany(mappedBy = "country", orphanRemoval = true)
+    @OrderBy("Name")
     private List<City> cities;
 
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country", orphanRemoval = true)
     @OrderBy("Percentage")
     private List<CountryLanguage> languages;
 }
