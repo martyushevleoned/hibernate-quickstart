@@ -22,7 +22,7 @@ public class City {
     @Column(name = "Name", columnDefinition = "char")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "CountryCode")
     private Country country;
 

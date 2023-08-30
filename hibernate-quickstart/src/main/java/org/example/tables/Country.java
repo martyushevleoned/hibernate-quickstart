@@ -65,11 +65,11 @@ public class Country {
     @Column(name = "Code2", columnDefinition = "char")
     private String code2;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    @OneToMany(mappedBy = "country")
     @OrderBy("ID")
     private List<City> cities;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    @OneToMany(mappedBy = "country")
     @OrderBy("Percentage")
     private List<CountryLanguage> languages;
 }
