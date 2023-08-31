@@ -1,27 +1,22 @@
+package pojo;
+
 import junit.framework.TestCase;
-import org.example.sql.MySqlWorker;
+import org.example.sql.QueryWorker;
 import org.example.tables.Country;
 import org.example.tables.CountryLanguage;
-import org.example.tables.keys.LanguagePK;
-import org.hibernate.Session;
 
 import java.util.Optional;
 
 public class PojoMappingTest extends TestCase {
 
-    Session session;
-
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        session = MySqlWorker.getSession();
-        System.out.println();
     }
 
     public void testGetCitiesByCountry() {
-        String testCountryCode = "PSE";
 
-        Optional<Country> country = Optional.ofNullable(session.get(Country.class, testCountryCode));
+        Optional<Country> country = QueryWorker.getCountry("PSE");
 
         if (country.isEmpty()) {
             System.out.println("Country not found");
@@ -36,14 +31,11 @@ public class PojoMappingTest extends TestCase {
     }
 
     public void testGetLanguagesByCountry() {
-        String testCountryCode = "RUS";
 
-        Optional<Country> country = Optional.ofNullable(session.get(Country.class, testCountryCode));
+        Optional<Country> country = QueryWorker.getCountry("PSE");
 
-        if (country.isEmpty()) {
-            System.out.println("Country not found");
+        if (country.isEmpty())
             return;
-        }
 
         System.out.println(country.get().getName() + " languages:");
 
@@ -53,23 +45,12 @@ public class PojoMappingTest extends TestCase {
     }
 
     public void testIsOfficialLanguage() {
-        String testCountryCode = "RUS";
-        String testLanguageName = "Russian";
 
-        Optional<Country> country = Optional.ofNullable(session.get(Country.class, testCountryCode));
-        if (country.isEmpty()) {
-            System.out.println("Country not found");
+        Optional<CountryLanguage> language = QueryWorker.getCountryLanguage("RUS", "Russian");
+
+        if (language.isEmpty())
             return;
-        }
 
-        LanguagePK pk = new LanguagePK(country.get(), testLanguageName);
-
-        Optional<CountryLanguage> language = Optional.ofNullable(session.get(CountryLanguage.class, pk));
-
-        if (language.isEmpty()) {
-            System.out.println("Language not found");
-            return;
-        }
 
         if (language.get().getIsOfficial()) {
             System.out.println(language.get().getLanguage() + " is official language of " + language.get().getCountry().getName());
@@ -81,6 +62,5 @@ public class PojoMappingTest extends TestCase {
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
-        session.close();
     }
 }
