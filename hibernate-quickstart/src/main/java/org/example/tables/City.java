@@ -16,7 +16,8 @@ import javax.persistence.*;
 public class City {
 
     @Id
-    @Column(name = "ID", columnDefinition = "int")
+//    @Column(name = "ID", columnDefinition = "int")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "Name", columnDefinition = "char")

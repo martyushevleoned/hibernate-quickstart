@@ -7,7 +7,7 @@ import org.hibernate.Session;
 
 import java.util.Optional;
 
-public class PojoTest extends TestCase {
+public class PojoMappingTest extends TestCase {
 
     Session session;
 
@@ -19,7 +19,7 @@ public class PojoTest extends TestCase {
     }
 
     public void testGetCitiesByCountry() {
-        String testCountryCode = "RUS";
+        String testCountryCode = "PSE";
 
         Optional<Country> country = Optional.ofNullable(session.get(Country.class, testCountryCode));
 
