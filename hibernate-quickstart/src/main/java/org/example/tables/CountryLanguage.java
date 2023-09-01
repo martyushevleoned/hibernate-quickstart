@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.tables.enums.IsOfficialConverter;
-import org.example.tables.keys.LanguagePK;
+import org.example.tables.keys.CountryLanguagePK;
 
 import javax.persistence.*;
 
@@ -14,14 +14,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@IdClass(LanguagePK.class)
+@IdClass(CountryLanguagePK.class)
 @Table(name = "countrylanguage")
 public class CountryLanguage {
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "CountryCode")
-    private Country country;
+    @Column(name = "CountryCode", columnDefinition = "char")
+    private String countryCode;
 
     @Id
     @Column(name = "Language", columnDefinition = "char")
@@ -35,4 +34,3 @@ public class CountryLanguage {
     private Double percentage;
 
 }
-

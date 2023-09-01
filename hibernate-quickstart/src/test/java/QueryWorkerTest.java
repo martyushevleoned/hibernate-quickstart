@@ -1,7 +1,4 @@
-package pojo;
-
 import junit.framework.TestCase;
-
 import org.example.sql.QueryWorker;
 import org.example.tables.City;
 import org.example.tables.Country;
@@ -10,8 +7,7 @@ import org.example.tables.enums.Continent;
 
 import java.util.Optional;
 
-public class PojoEditingTest extends TestCase {
-
+public class QueryWorkerTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -43,7 +39,7 @@ public class PojoEditingTest extends TestCase {
         City city = City.builder()
                 .id(4080)
                 .name("Chel")
-                .country(QueryWorker.getCountry("AAA").get())
+                .countryCode("AAA")
                 .district("Chel")
                 .population(100)
                 .build();
@@ -53,7 +49,7 @@ public class PojoEditingTest extends TestCase {
 
     public void testInsertCountryLanguage() {
         CountryLanguage countryLanguage = CountryLanguage.builder()
-                .country(QueryWorker.getCountry("AAA").get())
+                .countryCode("AAA")
                 .language("Russian")
                 .isOfficial(true)
                 .percentage(99.)
@@ -62,37 +58,36 @@ public class PojoEditingTest extends TestCase {
         QueryWorker.insert(countryLanguage);
     }
 
-    //======================================================================
+//    ==================================================================================================================
 
     public void testGetCountry() {
         Optional<Country> country = QueryWorker.getCountry("AAA");
-        country.ifPresent(value -> System.out.println("Country: " + value.getName()));
+        country.ifPresent(c -> System.out.println(c.getName()));
     }
 
     public void testGetCity() {
         Optional<City> city = QueryWorker.getCity(4080);
-        city.ifPresent(c -> System.out.println("City: " + c.getName()));
+        city.ifPresent(c -> System.out.println(c.getName()));
     }
 
     public void testGetCountryLanguage() {
         Optional<CountryLanguage> countryLanguage = QueryWorker.getCountryLanguage("AAA", "Russian");
-        countryLanguage.ifPresent(language -> System.out.println("Country language: " + language.getLanguage()));
+        countryLanguage.ifPresent(cl -> System.out.println(cl.getLanguage()));
     }
 
-    //=====================================================================
+//    ==================================================================================================================
 
     public void testDeleteCountry() {
         QueryWorker.deleteCountry("AAA");
     }
 
     public void testDeleteCity() {
-        QueryWorker.getCity(4080);
+        QueryWorker.deleteCity(4080);
     }
 
     public void testDeleteCountryLanguage() {
-        QueryWorker.getCountryLanguage("AAA", "Russian");
+        QueryWorker.deleteCountryLanguage("AAA", "Russian");
     }
-
 
     @Override
     protected void tearDown() throws Exception {
