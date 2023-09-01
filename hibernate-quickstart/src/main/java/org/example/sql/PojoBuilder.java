@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 
 import java.util.Optional;
 
-public class QueryWorker {
+public class PojoBuilder {
     private final static Session session = MySqlWorker.getSession();
 
     public static void insert(Country country) {
