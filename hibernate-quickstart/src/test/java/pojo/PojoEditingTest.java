@@ -79,11 +79,20 @@ public class PojoEditingTest extends TestCase {
         countryLanguage.ifPresent(language -> System.out.println("Country language: " + language.getLanguage()));
     }
 
-    //======================================================================
+    //=====================================================================
 
     public void testDeleteCountry() {
-        QueryWorker.delete(QueryWorker.getCountry("AAA").get());
+        QueryWorker.deleteCountry("AAA");
     }
+
+    public void testDeleteCity() {
+        QueryWorker.getCity(4080);
+    }
+
+    public void testDeleteCountryLanguage() {
+        QueryWorker.getCountryLanguage("AAA", "Russian");
+    }
+
 
     @Override
     protected void tearDown() throws Exception {
